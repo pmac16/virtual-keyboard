@@ -77,6 +77,54 @@ const Keyboard = {
       "?",
       "space",
     ];
+
+    //creates html for an icon
+    const createIconHTML = (icon_name) => {
+      return `<i class="material-icons">$(icon_name)</i>`;
+    };
+
+    keyLayout.forEach((key) => {
+      const keyElement = document.createElement("button");
+      const insterLineBreak =
+        ["backspace", "p", "enter", "?"].indexOf(key) !== -1;
+    });
+
+    //add attributes/classes
+    keyElement.setAttribute("type", "button");
+    keyElement.classList.add("keyboard_key");
+
+    switch (key) {
+      case "backspace":
+        keyElement.classList.add("keyboard_key--wide");
+        keyElement.innerHTML = createIconHTML("backspace");
+
+        keyElement.addEventListener("click", () => {
+          this.properties.value = this.properties.value.substring(
+            0,
+            this.properties.value.length - 1
+          );
+          this._triggerEvent("oninput");
+        });
+
+        break;
+
+      case "caps":
+        keyElement.classList.add(
+          "keyboard_key--wide",
+          "keyboard_key--activatable"
+        );
+        keyElement.innerHTML = createIconHTML("keyboard_capslock");
+
+        keyElement.addEventListener("click", () => {
+          this._toggleCapsLock();
+          keyElement.classList._toggle(
+            "keyboard_key--active",
+            this.properties.capsLock
+          );
+        });
+
+        break;
+    }
   },
 
   _triggerEvent(handlerName) {
