@@ -55,6 +55,7 @@ const Keyboard = {
       "i",
       "o",
       "p",
+      "caps",
       "a",
       "s",
       "d",
@@ -117,7 +118,7 @@ const Keyboard = {
 
           keyElement.addEventListener("click", () => {
             this._toggleCapsLock();
-            keyElement.classList._toggle(
+            keyElement.classList.toggle(
               "keyboard_key--active",
               this.properties.capsLock
             );
@@ -186,7 +187,7 @@ const Keyboard = {
   },
 
   _toggleCapsLock() {
-    console.log("Caps lock toggled!");
+    this.properties.capsLock = !this.properties.capsLock;
   },
 
   open(initialValue, oninput, onclose) {},
